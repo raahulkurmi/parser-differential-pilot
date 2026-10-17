@@ -31,6 +31,25 @@ dependency appeared in the data: go-jose v2's `NumericDate` converts a float to
 `9223372036854775807`. Other architectures may produce a different value. Other
 versions of any library may behave differently.
 
+**Platform-dependent `exp`/`iat` values (added with the exploratory analysis).**
+go-jose's `NumericDate` converts a parsed float64 with `int64(f)`. The Go
+specification leaves this implementation-defined when `f` is outside the
+`int64` range. Data were collected on darwin/arm64 only. On amd64 these values
+may differ: the x86-64 conversion instruction typically produces
+`-9223372036854775808`. That was not tested here. The cases concerned, as listed
+by `scripts/exploratory.py` (`results/exploratory/e_platform_dependent_int64.csv`):
+
+| Case | Field | float64 parsed by Go | go-jose value on darwin/arm64 |
+|---|---|---|---|
+| `num_exp_2p63` | exp | 9.223372036854776e+18 | 9223372036854775807 |
+| `num_exp_2p64p1` | exp | 1.8446744073709552e+19 | 9223372036854775807 |
+| `num_iat_2p63` | iat | 9.223372036854776e+18 | 9223372036854775807 |
+| `num_iat_2p64p1` | iat | 1.8446744073709552e+19 | 9223372036854775807 |
+
+According to the exploratory analysis, no pair's VALUE differential depends
+only on these four go-jose values. The pre-registered primary metric would be
+60 of 66 without them.
+
 ## 4. Disagreement is not exploitability
 
 A VALUE or ACCEPTANCE differential shows that two parsers interpret the same
@@ -48,6 +67,9 @@ The pre-registered extraction and equality rules are judgement calls, and they
 affect the totals:
 - **Numbers are compared by exact value.** A library that keeps 2^53+1 exactly and one that rounds it to the nearest double count as different. So does an exact decimal against its nearest double. Most pairs that differ on `exp`/`iat` differ on number representation. The per-field and per-case tables let readers judge how much of the headline count this accounts for.
 - **Typed decoders.** For go-jose's typed claims, `""` and a `null` `iss`/`sub` are reported as ABSENT, so `type_sub_null` produces a differential between go-jose and the raw-map parsers.
+  - **This differential comes from the extraction rule, not from a difference in parsing.** go-jose decodes `"sub": null` into an empty `Subject` string, which the pre-registered rule reports as ABSENT, while the raw-map parsers report `null`.
+  - The same rule applies to `type_exp_null` and `type_iat_null`, because go-jose's `NumericDate` pointer stays `nil`.
+  - These cases count toward the pre-registered metrics as registered. `docs/EXPLORATORY.md` (b) and (f) show the counts without them.
 - **`aud`.** The primary rule treats a string as equal to a one-element array (RFC 7519). The strict sensitivity rule gave the same pair counts (60 and 61), but a different per-field count for `aud` (21 rather than 11 pairs).
 
 ## 6. Narrow policy side

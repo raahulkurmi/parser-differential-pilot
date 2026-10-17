@@ -1,0 +1,11 @@
+case,category,field,pairs_with_value_diff
+uesc_iss_value_lone_surrogate,unicode-escape,iss,25
+syn_raw_surrogate_utf8,syntax,sub,14
+case_iss_longs_after,case-variant,iss,11
+case_iss_lower_then_upper,case-variant,iss,11
+case_iss_title_only,case-variant,iss,11
+case_iss_upper_only,case-variant,iss,11
+case_sub_longs_only,case-variant,sub,11
+case_sub_lower_then_upper,case-variant,sub,11
+case_sub_upper_only,case-variant,sub,11
+uesc_iss_upper_escaped_only,unicode-escape,iss,11

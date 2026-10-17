@@ -1,0 +1,13 @@
+a,b,fields_with_value_diff,iss_or_sub,exp_iat_only
+go-golangjwt,go-opa-json,exp iat,False,True
+go-golangjwt,go-opa-jwt,exp iat,False,True
+go-gojose,go-opa-json,exp iat sub,True,False
+go-gojose,go-opa-jwt,exp iat sub,True,False
+go-opa-json,py-pyjwt,exp iat iss sub,True,False
+go-opa-json,node-jose,exp iat iss,True,False
+go-opa-json,node-jsonwebtoken,exp iat iss,True,False
+go-opa-json,rs-jsonwebtoken,exp iat,False,True
+go-opa-jwt,py-pyjwt,exp iat iss sub,True,False
+go-opa-jwt,node-jose,exp iat iss,True,False
+go-opa-jwt,node-jsonwebtoken,exp iat iss,True,False
+go-opa-jwt,rs-jsonwebtoken,exp iat,False,True
