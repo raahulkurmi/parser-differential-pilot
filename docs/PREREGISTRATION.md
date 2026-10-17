@@ -313,6 +313,38 @@ not changed after the push.
 
 ---
 
+## 11. Amendments before data collection (2026-10-17)
+
+This section was added after the pre-registration commit
+`3499fcb9219f502defd964b7c854625f9a713599` was pushed (2026-10-17T08:57:22Z; see
+`docs/TIMING_EVIDENCE.md`). Data collection has not started. It changes no
+prediction, classification or equality rule, metric, parser pin or corpus file.
+
+**(a) Prediction provenance.** **P5** and **P6** were revised after reading the
+README and source of go-jose v2.6.3's JSON fork (`gopkg.in/go-jose/go-jose.v2/json`).
+That source shows two things. The fork rejects any object containing duplicate
+member names. It also matches member names case-sensitively, unlike Go's
+`encoding/json`.
+- *P5, earlier draft:* only `rs-jsonwebtoken` rejects some duplicate-key cases, and every other parser, including `go-gojose`, accepts all of them.
+  *As registered:* `go-gojose` rejects all 11 duplicate-key cases, and `rs-jsonwebtoken`'s pattern is as stated in §7.
+- *P6, earlier draft:* on `dup_iss_null` and `dup_sub_null`, `go-gojose` keeps the first non-null value while raw-map parsers report `null`, giving a VALUE differential.
+  *As registered:* the duplicate-key category contains zero VALUE differentials.
+
+Both revisions were made before the pre-registration commit and before any
+harness was run on the corpus. No harness had been run on any input at all.
+The case-sensitive matching finding left **P9** unchanged, because it already
+assumed that `go-gojose` matches case-sensitively. The source reading confirmed
+that assumption rather than changing it. No other prediction was edited after
+it was first written into `scripts/check_predictions.py` or this document.
+
+**(b) Wording rule for all public outputs.** Results describe how each parser
+handles each input. No output states or implies that any product, deployment,
+or combination of these libraries is vulnerable or affected. Tables of
+policy-side × verifier-side pairs describe disagreement between parsers, not
+between deployed systems.
+
+---
+
 ## Appendix A. SHA-256 of every corpus file and MANIFEST.csv
 
 `MANIFEST.csv`: `eff3dd2c6779579d95f28464974c24f4cae67bd8d0768571471a110399cda4fe`
