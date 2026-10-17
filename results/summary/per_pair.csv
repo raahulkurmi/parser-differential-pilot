@@ -1,0 +1,67 @@
+a,b,roles,VALUE_cases,ACCEPTANCE_cases,AGREE_cases,BOTH-REJECT_cases,fields_with_value_diff
+go-encjson-struct,go-golangjwt,general-purpose x verifier-side,14,0,95,28,iss sub aud exp iat
+go-encjson-struct,go-gojose,general-purpose x verifier-side,23,37,49,28,iss sub aud exp iat
+go-encjson-struct,go-opa-json,general-purpose x policy-side,22,2,87,26,iss sub aud exp iat
+go-encjson-struct,go-opa-jwt,general-purpose x policy-side,22,2,87,26,iss sub aud exp iat
+go-encjson-struct,py-json,general-purpose x general-purpose,20,11,87,19,iss sub aud exp iat
+go-encjson-struct,py-pyjwt,general-purpose x verifier-side,20,11,87,19,iss sub aud exp iat
+go-encjson-struct,node-json,general-purpose x general-purpose,15,2,94,26,iss sub aud exp iat
+go-encjson-struct,node-jose,general-purpose x verifier-side,15,6,91,25,iss sub aud exp iat
+go-encjson-struct,node-jsonwebtoken,general-purpose x verifier-side,15,3,94,25,iss sub aud exp iat
+go-encjson-struct,rs-serdejson,general-purpose x general-purpose,16,5,88,28,iss sub aud exp iat
+go-encjson-struct,rs-jsonwebtoken,general-purpose x verifier-side,16,21,72,28,iss sub aud exp iat
+go-golangjwt,go-gojose,verifier-side x verifier-side,9,37,63,28,sub exp iat
+go-golangjwt,go-opa-json,policy-side x verifier-side,8,2,101,26,exp iat
+go-golangjwt,go-opa-jwt,policy-side x verifier-side,8,2,101,26,exp iat
+go-golangjwt,py-json,general-purpose x verifier-side,6,11,101,19,iss sub exp iat
+go-golangjwt,py-pyjwt,verifier-side x verifier-side,6,11,101,19,iss sub exp iat
+go-golangjwt,node-json,general-purpose x verifier-side,1,2,108,26,iss
+go-golangjwt,node-jose,verifier-side x verifier-side,1,6,105,25,iss
+go-golangjwt,node-jsonwebtoken,verifier-side x verifier-side,1,3,108,25,iss
+go-golangjwt,rs-serdejson,general-purpose x verifier-side,2,5,102,28,exp iat
+go-golangjwt,rs-jsonwebtoken,verifier-side x verifier-side,2,21,86,28,exp iat
+go-gojose,go-opa-json,policy-side x verifier-side,15,39,57,26,sub exp iat
+go-gojose,go-opa-jwt,policy-side x verifier-side,15,39,57,26,sub exp iat
+go-gojose,py-json,general-purpose x verifier-side,13,48,57,19,iss sub exp iat
+go-gojose,py-pyjwt,verifier-side x verifier-side,13,48,57,19,iss sub exp iat
+go-gojose,node-json,general-purpose x verifier-side,10,39,62,26,iss sub exp iat
+go-gojose,node-jose,verifier-side x verifier-side,10,43,59,25,iss sub exp iat
+go-gojose,node-jsonwebtoken,verifier-side x verifier-side,10,40,62,25,iss sub exp iat
+go-gojose,rs-serdejson,general-purpose x verifier-side,11,42,56,28,sub exp iat
+go-gojose,rs-jsonwebtoken,verifier-side x verifier-side,11,26,56,44,sub exp iat
+go-opa-json,go-opa-jwt,policy-side x policy-side,0,0,111,26,-
+go-opa-json,py-json,general-purpose x policy-side,8,9,101,19,iss sub exp iat
+go-opa-json,py-pyjwt,policy-side x verifier-side,8,9,101,19,iss sub exp iat
+go-opa-json,node-json,general-purpose x policy-side,11,0,100,26,iss exp iat
+go-opa-json,node-jose,policy-side x verifier-side,11,4,97,25,iss exp iat
+go-opa-json,node-jsonwebtoken,policy-side x verifier-side,11,1,100,25,iss exp iat
+go-opa-json,rs-serdejson,general-purpose x policy-side,6,7,98,26,exp iat
+go-opa-json,rs-jsonwebtoken,policy-side x verifier-side,6,23,82,26,exp iat
+go-opa-jwt,py-json,general-purpose x policy-side,8,9,101,19,iss sub exp iat
+go-opa-jwt,py-pyjwt,policy-side x verifier-side,8,9,101,19,iss sub exp iat
+go-opa-jwt,node-json,general-purpose x policy-side,11,0,100,26,iss exp iat
+go-opa-jwt,node-jose,policy-side x verifier-side,11,4,97,25,iss exp iat
+go-opa-jwt,node-jsonwebtoken,policy-side x verifier-side,11,1,100,25,iss exp iat
+go-opa-jwt,rs-serdejson,general-purpose x policy-side,6,7,98,26,exp iat
+go-opa-jwt,rs-jsonwebtoken,policy-side x verifier-side,6,23,82,26,exp iat
+py-json,py-pyjwt,general-purpose x verifier-side,0,0,116,21,-
+py-json,node-json,general-purpose x general-purpose,5,9,104,19,sub exp iat
+py-json,node-jose,general-purpose x verifier-side,4,7,105,21,exp iat
+py-json,node-jsonwebtoken,general-purpose x verifier-side,5,10,104,18,sub exp iat
+py-json,rs-serdejson,general-purpose x general-purpose,2,12,102,21,exp iat
+py-json,rs-jsonwebtoken,general-purpose x verifier-side,2,28,86,21,exp iat
+py-pyjwt,node-json,general-purpose x verifier-side,5,9,104,19,sub exp iat
+py-pyjwt,node-jose,verifier-side x verifier-side,4,7,105,21,exp iat
+py-pyjwt,node-jsonwebtoken,verifier-side x verifier-side,5,10,104,18,sub exp iat
+py-pyjwt,rs-serdejson,general-purpose x verifier-side,2,12,102,21,exp iat
+py-pyjwt,rs-jsonwebtoken,verifier-side x verifier-side,2,28,86,21,exp iat
+node-json,node-jose,general-purpose x verifier-side,0,4,108,25,-
+node-json,node-jsonwebtoken,general-purpose x verifier-side,0,1,111,25,-
+node-json,rs-serdejson,general-purpose x general-purpose,2,7,102,26,exp iat
+node-json,rs-jsonwebtoken,general-purpose x verifier-side,2,23,86,26,exp iat
+node-jose,node-jsonwebtoken,verifier-side x verifier-side,0,5,108,24,-
+node-jose,rs-serdejson,general-purpose x verifier-side,2,5,102,28,exp iat
+node-jose,rs-jsonwebtoken,verifier-side x verifier-side,2,21,86,28,exp iat
+node-jsonwebtoken,rs-serdejson,general-purpose x verifier-side,2,8,102,25,exp iat
+node-jsonwebtoken,rs-jsonwebtoken,verifier-side x verifier-side,2,24,86,25,exp iat
+rs-serdejson,rs-jsonwebtoken,general-purpose x verifier-side,0,16,88,33,-

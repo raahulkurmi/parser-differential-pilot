@@ -1,0 +1,13 @@
+a,b,roles,VALUE_cases,ACCEPTANCE_cases,AGREE_cases,BOTH-REJECT_cases,fields_with_value_diff
+go-golangjwt,go-opa-json,policy-side x verifier-side,8,2,101,26,exp iat
+go-golangjwt,go-opa-jwt,policy-side x verifier-side,8,2,101,26,exp iat
+go-gojose,go-opa-json,policy-side x verifier-side,15,39,57,26,sub exp iat
+go-gojose,go-opa-jwt,policy-side x verifier-side,15,39,57,26,sub exp iat
+go-opa-json,py-pyjwt,policy-side x verifier-side,8,9,101,19,iss sub exp iat
+go-opa-json,node-jose,policy-side x verifier-side,11,4,97,25,iss exp iat
+go-opa-json,node-jsonwebtoken,policy-side x verifier-side,11,1,100,25,iss exp iat
+go-opa-json,rs-jsonwebtoken,policy-side x verifier-side,6,23,82,26,exp iat
+go-opa-jwt,py-pyjwt,policy-side x verifier-side,8,9,101,19,iss sub exp iat
+go-opa-jwt,node-jose,policy-side x verifier-side,11,4,97,25,iss exp iat
+go-opa-jwt,node-jsonwebtoken,policy-side x verifier-side,11,1,100,25,iss exp iat
+go-opa-jwt,rs-jsonwebtoken,policy-side x verifier-side,6,23,82,26,exp iat

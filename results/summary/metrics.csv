@@ -1,0 +1,17 @@
+metric,count,of
+PRIMARY: pairs with >=1 VALUE differential on a security-relevant field (aud rule: rfc),60,66
+pairs with >=1 ACCEPTANCE differential,61,66
+"pairs with >=1 VALUE differential (aud rule: strict, sensitivity)",60,66
+"pairs with >=1 ACCEPTANCE differential (aud rule: strict, sensitivity)",61,66
+[general-purpose x general-purpose] pairs with >=1 VALUE differential,6,6
+[general-purpose x general-purpose] pairs with >=1 ACCEPTANCE differential,6,6
+[general-purpose x policy-side] pairs with >=1 VALUE differential,8,8
+[general-purpose x policy-side] pairs with >=1 ACCEPTANCE differential,6,8
+[general-purpose x verifier-side] pairs with >=1 VALUE differential,20,24
+[general-purpose x verifier-side] pairs with >=1 ACCEPTANCE differential,22,24
+[policy-side x policy-side] pairs with >=1 VALUE differential,0,1
+[policy-side x policy-side] pairs with >=1 ACCEPTANCE differential,0,1
+[policy-side x verifier-side] pairs with >=1 VALUE differential,12,12
+[policy-side x verifier-side] pairs with >=1 ACCEPTANCE differential,12,12
+[verifier-side x verifier-side] pairs with >=1 VALUE differential,14,15
+[verifier-side x verifier-side] pairs with >=1 ACCEPTANCE differential,15,15

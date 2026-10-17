@@ -1,0 +1,9 @@
+category,cases,pairs_with_value_diff,pairs_with_acceptance_diff,AGREE,ACCEPTANCE,VALUE,BOTH-REJECT
+case-variant,18,11,0,1045,0,143,0
+control,5,0,0,330,0,0,0
+duplicate-key,11,0,21,515,202,0,9
+nested-duplicate,9,0,21,518,75,0,1
+number,36,53,45,1336,150,294,596
+syntax,20,14,49,135,175,14,996
+type-confusion,19,11,21,1036,183,33,2
+unicode-escape,19,31,30,1081,131,36,6
