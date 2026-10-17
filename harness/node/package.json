@@ -1,0 +1,15 @@
+{
+  "name": "pdp-node-harness",
+  "version": "1.0.0",
+  "description": "Parser-differential pilot: Node harness",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "jose": "6.2.12",
+    "jsonwebtoken": "9.0.3"
+  },
+  "private": true
+}

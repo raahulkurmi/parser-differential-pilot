@@ -1,0 +1,12 @@
+# Private disclosure notes: must never reach the public repository.
+docs/DISCLOSURE_NOTES.md
+
+# Local build / environment artefacts
+harness/python/.venv/
+harness/node/node_modules/
+harness/rust/target/
+harness/go/harness-go
+__pycache__/
+*.pyc
+.DS_Store
+harness/go-opa/harness-go-opa

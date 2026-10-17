@@ -1,0 +1,138 @@
+id,category,description,expected ambiguity
+ctl_baseline,control,"All five claims, canonical form",none
+ctl_reordered,control,All five claims in reverse member order,none
+ctl_minimal_iss_sub,control,Only iss and sub present,none (aud/exp/iat ABSENT)
+ctl_empty_object,control,Empty object,none (all fields ABSENT)
+ctl_whitespace,control,Baseline with all four legal JSON whitespace characters between tokens,none
+dup_iss_diff,duplicate-key,"iss appears twice: baseline value first, different value last",first-wins vs last-wins vs reject
+dup_sub_diff,duplicate-key,"sub appears twice: baseline value first, different value last",first-wins vs last-wins vs reject
+dup_aud_diff,duplicate-key,"aud appears twice: baseline value first, different value last",first-wins vs last-wins vs reject
+dup_exp_diff,duplicate-key,"exp appears twice: baseline value first, different value last",first-wins vs last-wins vs reject
+dup_iat_diff,duplicate-key,"iat appears twice: baseline value first, different value last",first-wins vs last-wins vs reject
+dup_iss_null,duplicate-key,"iss appears twice: baseline value first, null last",last-wins null vs typed decoder ignoring null vs reject
+dup_sub_null,duplicate-key,"sub appears twice: baseline value first, null last",last-wins null vs typed decoder ignoring null vs reject
+dup_aud_null,duplicate-key,"aud appears twice: baseline value first, null last",last-wins null vs typed decoder ignoring null vs reject
+dup_exp_null,duplicate-key,"exp appears twice: baseline value first, null last",last-wins null vs typed decoder ignoring null vs reject
+dup_iat_null,duplicate-key,"iat appears twice: baseline value first, null last",last-wins null vs typed decoder ignoring null vs reject
+dup_iss_triple,duplicate-key,iss appears three times with three different values,first vs middle vs last vs reject
+case_iss_upper_only,case-variant,iss key written only in upper case (ISS),case-insensitive field matching vs ABSENT
+case_sub_upper_only,case-variant,sub key written only in upper case (SUB),case-insensitive field matching vs ABSENT
+case_aud_upper_only,case-variant,aud key written only in upper case (AUD),case-insensitive field matching vs ABSENT
+case_exp_upper_only,case-variant,exp key written only in upper case (EXP),case-insensitive field matching vs ABSENT
+case_iat_upper_only,case-variant,iat key written only in upper case (IAT),case-insensitive field matching vs ABSENT
+case_iss_lower_then_upper,case-variant,"iss with baseline value, then ISS with a different value",case-insensitive last-wins vs exact match
+case_sub_lower_then_upper,case-variant,"sub with baseline value, then SUB with a different value",case-insensitive last-wins vs exact match
+case_aud_lower_then_upper,case-variant,"aud with baseline value, then AUD with a different value",case-insensitive last-wins vs exact match
+case_exp_lower_then_upper,case-variant,"exp with baseline value, then EXP with a different value",case-insensitive last-wins vs exact match
+case_iat_lower_then_upper,case-variant,"iat with baseline value, then IAT with a different value",case-insensitive last-wins vs exact match
+case_iss_upper_then_lower,case-variant,"ISS with a different value, then iss with baseline value",case-insensitive last-wins vs exact match
+case_sub_upper_then_lower,case-variant,"SUB with a different value, then sub with baseline value",case-insensitive last-wins vs exact match
+case_aud_upper_then_lower,case-variant,"AUD with a different value, then aud with baseline value",case-insensitive last-wins vs exact match
+case_exp_upper_then_lower,case-variant,"EXP with a different value, then exp with baseline value",case-insensitive last-wins vs exact match
+case_iat_upper_then_lower,case-variant,"IAT with a different value, then iat with baseline value",case-insensitive last-wins vs exact match
+case_iss_title_only,case-variant,iss key written only as Iss,case-insensitive matching vs ABSENT
+case_sub_longs_only,case-variant,sub key written only as U+017F LATIN SMALL LETTER LONG S + 'ub' (raw UTF-8),Unicode simple case folding (long s folds to s) vs ABSENT
+case_iss_longs_after,case-variant,"baseline iss, then key 'i' U+017F 's' (raw UTF-8) with a different value",Unicode case folding last-wins vs exact match
+uesc_iss_first_char,unicode-escape,iss key with its first character written as a \u escape (iss),escape decoded before key match vs ABSENT
+uesc_sub_first_char,unicode-escape,sub key with its first character written as a \u escape (sub),escape decoded before key match vs ABSENT
+uesc_aud_first_char,unicode-escape,aud key with its first character written as a \u escape (aud),escape decoded before key match vs ABSENT
+uesc_exp_first_char,unicode-escape,exp key with its first character written as a \u escape (exp),escape decoded before key match vs ABSENT
+uesc_iat_first_char,unicode-escape,iat key with its first character written as a \u escape (iat),escape decoded before key match vs ABSENT
+uesc_iss_dup_after,unicode-escape,"baseline iss, then iss with a different value",escaped duplicate recognised (last-wins) vs treated as distinct key
+uesc_sub_dup_after,unicode-escape,"baseline sub, then sub with a different value",escaped duplicate recognised (last-wins) vs treated as distinct key
+uesc_aud_dup_after,unicode-escape,"baseline aud, then aud with a different value",escaped duplicate recognised (last-wins) vs treated as distinct key
+uesc_exp_dup_after,unicode-escape,"baseline exp, then exp with a different value",escaped duplicate recognised (last-wins) vs treated as distinct key
+uesc_iat_dup_after,unicode-escape,"baseline iat, then iat with a different value",escaped duplicate recognised (last-wins) vs treated as distinct key
+uesc_iss_all_escaped,unicode-escape,iss key fully escaped (iss),escape decoding vs ABSENT
+uesc_iss_upper_escaped_only,unicode-escape,iss key written only as ISS (escaped upper case),escape decoding combined with case-insensitive matching
+uesc_iss_nul_suffix_after,unicode-escape,"baseline iss, then key iss\u0000 with a different value",NUL truncation of keys vs distinct key
+uesc_iss_lone_surrogate_after,unicode-escape,"baseline iss, then key iss\ud800 (lone surrogate) with a different value",lone-surrogate key: reject vs replace with U+FFFD vs keep
+uesc_iss_value_escaped,unicode-escape,iss value with first character escaped (https://...),none expected (decodes to baseline)
+uesc_iss_value_lone_surrogate,unicode-escape,iss value ending in a lone surrogate escape \ud800,reject vs U+FFFD replacement vs lone surrogate kept
+uesc_sub_value_nul,unicode-escape,sub value containing an escaped NUL (user-1\u0000admin),NUL truncation vs full string
+uesc_iss_escaped_solidus,unicode-escape,iss value with escaped solidus (https:\/\/issuer.example),none expected (decodes to baseline)
+uesc_sub_surrogate_pair,unicode-escape,sub value is a valid surrogate pair escape (😀),none expected (U+1F600)
+num_exp_1e10,number,"exp = 1e10 (exponent notation, exact integer value 10000000000)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_1_5,number,exp = 1.5 (non-integer),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_2p53p1,number,"exp = 9007199254740993 (2^53+1, not representable as float64)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_2p63,number,"exp = 9223372036854775808 (2^63, one above int64 max)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_2p64p1,number,"exp = 18446744073709551617 (2^64+1, above uint64 max)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_neg1,number,exp = -1 (negative),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_negzero,number,exp = -0 (negative zero),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_exp_upper,number,"exp = 1E9 (upper-case exponent, value 1000000000)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_float_int,number,exp = 4102444800.0 (integer value written with a fraction),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_exp_form,number,exp = 4.1024448e9 (baseline exp value in exponent form),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_overflow,number,exp = 1e400 (overflows float64),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_underflow,number,exp = 1e-400 (underflows float64 to zero),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_precision,number,exp = 4102444800.0000001 (fraction below float64 resolution at this magnitude),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_nan,number,exp = NaN (non-standard NaN literal),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_infinity,number,exp = Infinity (non-standard Infinity literal),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_leading_zero,number,exp = 0123 (invalid leading zero),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_plus,number,exp = +1 (invalid leading plus sign),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_exp_hex,number,exp = 0x10 (invalid hexadecimal literal),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_1e10,number,"iat = 1e10 (exponent notation, exact integer value 10000000000)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_1_5,number,iat = 1.5 (non-integer),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_2p53p1,number,"iat = 9007199254740993 (2^53+1, not representable as float64)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_2p63,number,"iat = 9223372036854775808 (2^63, one above int64 max)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_2p64p1,number,"iat = 18446744073709551617 (2^64+1, above uint64 max)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_neg1,number,iat = -1 (negative),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_negzero,number,iat = -0 (negative zero),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_exp_upper,number,"iat = 1E9 (upper-case exponent, value 1000000000)","exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_float_int,number,iat = 4102444800.0 (integer value written with a fraction),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_exp_form,number,iat = 4.1024448e9 (baseline exp value in exponent form),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_overflow,number,iat = 1e400 (overflows float64),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_underflow,number,iat = 1e-400 (underflows float64 to zero),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_precision,number,iat = 4102444800.0000001 (fraction below float64 resolution at this magnitude),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_nan,number,iat = NaN (non-standard NaN literal),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_infinity,number,iat = Infinity (non-standard Infinity literal),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_leading_zero,number,iat = 0123 (invalid leading zero),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_plus,number,iat = +1 (invalid leading plus sign),"exact vs float64 vs integer-truncated value, or accept vs reject"
+num_iat_hex,number,iat = 0x10 (invalid hexadecimal literal),"exact vs float64 vs integer-truncated value, or accept vs reject"
+nest_aud_array_dup_entries,nested-duplicate,aud array with the same entry twice,array kept as-is vs de-duplicated
+nest_aud_array_two,nested-duplicate,aud array with two different entries,none expected
+nest_aud_object_dup_keys,nested-duplicate,aud is an object with a duplicated member,object type accepted vs rejected; inner first-wins vs last-wins
+nest_aud_array_obj_dup,nested-duplicate,aud array holding an object with a duplicated member,inner first-wins vs last-wins; non-string element accepted vs rejected
+nest_aud_nested_array,nested-duplicate,aud array nested inside an array,accepted vs rejected; flattened vs not
+nest_aud_array_mixed_types,nested-duplicate,aud array with a string and a number,accepted vs rejected
+nest_aud_empty_array,nested-duplicate,aud is an empty array,empty array vs ABSENT
+nest_aud_array_with_null,nested-duplicate,aud array with a null element,accepted vs rejected; null kept vs dropped
+nest_aud_dup_array_then_string,nested-duplicate,"aud appears twice: first as an array, last as a string",first-wins vs last-wins across differing types
+syn_bom_utf8,syntax,UTF-8 byte order mark before the object,BOM skipped vs rejected
+syn_utf16le_bom,syntax,Whole document in UTF-16LE with BOM,encoding detection vs rejected
+syn_utf16be_nobom,syntax,Whole document in UTF-16BE without BOM,encoding detection vs rejected
+syn_trailing_garbage,syntax,Non-whitespace byte 'x' after the object,trailing data ignored vs rejected
+syn_trailing_object,syntax,A second object (with a different iss) after the first,first object used vs rejected
+syn_trailing_whitespace,syntax,Legal whitespace after the object,none expected
+syn_trailing_nul,syntax,NUL byte after the object,trailing NUL ignored vs rejected
+syn_leading_nbsp,syntax,U+00A0 NO-BREAK SPACE (raw UTF-8) before the object,non-JSON whitespace accepted vs rejected
+syn_formfeed_ws,syntax,Form feed used as whitespace between members,non-JSON whitespace accepted vs rejected
+syn_trailing_comma_object,syntax,Trailing comma after the last member,lenient accept vs reject
+syn_trailing_comma_array,syntax,Trailing comma inside the aud array,lenient accept vs reject
+syn_comment_line,syntax,Line comment before the object,comments accepted vs rejected
+syn_comment_block_inside,syntax,Block comment inside the object,comments accepted vs rejected
+syn_single_quotes,syntax,iss value in single quotes,lenient accept vs reject
+syn_unquoted_key,syntax,iss key without quotes,lenient accept vs reject
+syn_raw_control_char_in_string,syntax,Raw (unescaped) TAB inside the sub value,lenient accept vs reject
+syn_invalid_utf8_in_value,syntax,Byte 0xFF inside the sub value,reject vs U+FFFD replacement
+syn_overlong_utf8_key_after,syntax,"baseline iss, then key 'i' + overlong 2-byte 's' (C1 B3) + 's' with a different value",reject vs U+FFFD replacement vs decoded as s
+syn_raw_surrogate_utf8,syntax,sub value contains a UTF-8-encoded surrogate (ED A0 80),reject vs U+FFFD replacement vs kept
+syn_top_level_array,syntax,Baseline object wrapped in an array,all reject (claims set must be an object)
+type_aud_single_array,type-confusion,aud as a one-element array,string vs single-element array
+type_aud_number,type-confusion,aud as a number,accepted vs rejected
+type_aud_object,type-confusion,aud as an object,accepted vs rejected
+type_aud_null,type-confusion,aud as null,null vs ABSENT vs rejected
+type_aud_bool,type-confusion,aud as a boolean,accepted vs rejected
+type_exp_string,type-confusion,exp as a numeric string,string kept vs coerced vs rejected
+type_iat_string,type-confusion,iat as a numeric string,string kept vs coerced vs rejected
+type_exp_string_float,type-confusion,exp as a non-integer numeric string,string kept vs coerced vs rejected
+type_exp_bool,type-confusion,exp as a boolean,accepted vs rejected
+type_exp_null,type-confusion,exp as null,null vs ABSENT vs rejected
+type_exp_array,type-confusion,exp as a one-element array,accepted vs rejected
+type_exp_object,type-confusion,exp as an object,accepted vs rejected
+type_iss_number,type-confusion,iss as a number,accepted vs rejected
+type_iss_array,type-confusion,iss as a one-element array,accepted vs rejected
+type_iss_object,type-confusion,iss as an object,accepted vs rejected
+type_sub_number,type-confusion,sub as a number,accepted vs rejected
+type_sub_null,type-confusion,sub as null,null vs ABSENT vs rejected
+type_sub_bool,type-confusion,sub as a boolean,accepted vs rejected
+type_iat_null,type-confusion,iat as null,null vs ABSENT vs rejected
