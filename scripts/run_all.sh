@@ -23,7 +23,7 @@ PUB=testdata/keys/TEST_ONLY_rs256_public.pem
 (cd harness/rust && cargo build --release --locked)
 (cd harness/node && npm ci --ignore-scripts)
 if [ ! -x harness/python/.venv/bin/python ]; then
-  /opt/anaconda3/bin/python3 -m venv harness/python/.venv
+  "${PYTHON:-python3}" -m venv harness/python/.venv
 fi
 harness/python/.venv/bin/pip install --require-hashes --no-deps -r harness/python/requirements.txt
 

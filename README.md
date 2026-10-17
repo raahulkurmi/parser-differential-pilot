@@ -7,6 +7,7 @@ sides of cloud-native authorization.
 - Timing evidence: [`docs/TIMING_EVIDENCE.md`](docs/TIMING_EVIDENCE.md)
 - Prediction outcomes: [`docs/PREDICTION_OUTCOMES.md`](docs/PREDICTION_OUTCOMES.md)
 - Limitations: [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md). Deviations: [`docs/DEVIATIONS.md`](docs/DEVIATIONS.md). Summary: [`docs/SUMMARY.md`](docs/SUMMARY.md)
+- Post-hoc exploratory analysis (not pre-registered): [`docs/EXPLORATORY.md`](docs/EXPLORATORY.md)
 
 ## Question
 
@@ -25,7 +26,7 @@ combination of these libraries is vulnerable or affected.
 
 - **Parsers.** 12, at exact pinned versions (`results/ENVIRONMENT.md`):
   - policy-side: OPA v1.21.2 `json.unmarshal`, and OPA `io.jwt.verify_rs256` + `io.jwt.decode`;
-  - verifier-side: golang-jwt v5.3.0, go-jose v2.6.3 (the version pinned in Kubernetes v1.36.5), PyJWT 2.15.1, jose 6.2.12, jsonwebtoken 9.0.3 (npm), jsonwebtoken 11.1.0 (Rust);
+  - verifier-side: golang-jwt v5.3.0, go-jose v2.6.3, PyJWT 2.15.1, jose 6.2.12, jsonwebtoken 9.0.3 (npm), jsonwebtoken 11.1.0 (Rust);
   - general-purpose: Go `encoding/json` (struct decoding), CPython `json`, Node.js `JSON.parse`, serde_json 1.0.154.
 - **Corpus v1.** 137 hand-built payloads in 8 categories (control, duplicate keys, case-variant keys, Unicode escapes, numbers for `exp`/`iat`, nested duplicates in `aud`, syntax/encoding, type confusion). Each one is also wrapped as a validly signed RS256 token made with a test-only key, so only payload parsing is under test. The corpus is frozen by `corpus/SHA256SUMS`.
 - **Observation.** For each (input, parser) the harness records ACCEPT or REJECT. For an ACCEPT it also records the value of each of the five claims, or ABSENT.
@@ -76,6 +77,7 @@ python3 scripts/classify.py
 python3 scripts/check_predictions.py
 python3 scripts/summarize.py
 python3 scripts/render_reports.py
+python3 scripts/exploratory.py              # post-hoc, not pre-registered
 ```
 
 `scripts/build_corpus.py` and `scripts/build_tokens.py` regenerate the corpus

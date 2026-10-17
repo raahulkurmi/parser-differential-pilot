@@ -87,9 +87,10 @@ perfect hit rate should not be read as evidence of anything beyond that.
 
 ## 8. Deviations
 
-Three procedural deviations are recorded in `docs/DEVIATIONS.md`:
+Four procedural deviations are recorded in `docs/DEVIATIONS.md`:
 - D1: the analysis steps were deferred until the raw results were committed;
 - D2: the environment dump containing the local hostname was not committed;
-- D3: a formatting-only report script was added.
+- D3: a formatting-only report script was added;
+- D4: a hard-coded interpreter path in `scripts/run_all.sh` was made portable after data collection.
 
 None changed a prediction, rule, pin, corpus file or number.

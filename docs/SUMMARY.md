@@ -12,7 +12,9 @@ Python, Node.js and Rust. The 137 hand-built inputs covered duplicate and
 case-variant keys, Unicode escapes, edge-case numbers, encoding and syntax
 variants, and type confusion. Each token was validly signed, so only payload
 parsing was under test. The question, corpus hashes, equality rules and 22
-falsifiable predictions were committed publicly before any data was collected.
+falsifiable predictions were committed and pushed to GitHub (then a private
+repository) before any data was collected, with server-side push timestamps
+(`docs/TIMING_EVIDENCE.md`).
 60 of the 66 parser pairs reported a different value for at least one of
 `iss`, `sub`, `aud`, `exp` or `iat` on at least one input, and 61 of 66
 disagreed on whether to accept at least one input. Every one of the 12
@@ -34,11 +36,11 @@ A small pre-registered pilot found that 60 of 66 parser pairs disagreed on at le
 
 ## Alternative candidate sentence (pre-registered metric plus one exploratory figure)
 
-A small pre-registered pilot found that 60 of 66 parser pairs disagreed on at least one security-relevant claim (pre-registered primary metric). In a post-hoc exploratory breakdown, 40 of 66 pairs disagreed on the identity claims `iss` or `sub` (exploratory, not pre-registered).
+A small pre-registered pilot (github.com/raahulkurmi/parser-differential-pilot) found that 60 of 66 parser pairs disagreed on at least one security-relevant claim; in a post-hoc breakdown, 35 of 66 still disagreed on the token's issuer or subject after excluding extraction artefacts.
 
 - 60 of 66 is the pre-registered primary metric, from `results/summary/metrics.csv`.
-- 40 of 66 is **exploratory**, from `results/exploratory/numbers.txt` line (a). See `docs/EXPLORATORY.md`.
-- Excluding the go-jose null-versus-ABSENT extraction artefacts, the exploratory iss/sub figure is 35 of 66 (line (f)). Cite that figure instead if a stricter reading is wanted.
+- 35 of 66 is **exploratory** (post-hoc, not pre-registered), from `results/exploratory/numbers.txt` line (f). It excludes the go-jose null-versus-ABSENT extraction artefacts (`type_sub_null`, `type_exp_null`, `type_iat_null`). See `docs/EXPLORATORY.md`.
+- Before that exclusion, the exploratory figure is 40 of 66 pairs disagreeing on `iss` or `sub` (line (a)).
 
 ## Where the numbers come from
 
