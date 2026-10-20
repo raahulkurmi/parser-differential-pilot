@@ -227,8 +227,8 @@ Do real systems actually combine two parsers that disagree, on the same token, i
 
 ## Author and citation
 
-Rahul Chaudhary (GitHub: [raahulkurmi](https://github.com/raahulkurmi))
+Rahul Kurmi (GitHub: [raahulkurmi](https://github.com/raahulkurmi))
 
 Suggested citation:
 
-> Rahul Chaudhary. *parser-differential-pilot: a pre-registered pilot measurement of JSON and JWT parser differentials.* 2026. <https://github.com/raahulkurmi/parser-differential-pilot>
+> Rahul Kurmi. *parser-differential-pilot: a pre-registered pilot measurement of JSON and JWT parser differentials.* 2026. <https://github.com/raahulkurmi/parser-differential-pilot>
