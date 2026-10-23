@@ -47,6 +47,9 @@ Raw response: [`docs/timing/repo.json`](timing/repo.json), from
 `gh api repos/raahulkurmi/parser-differential-pilot`, retrieved
 2026-10-17T09:12:32Z. `pushed_at` is a live field, and pushing this file moves
 it forward. The saved snapshot shows its value before this file was pushed.
+The `temp_clone_token` value in this snapshot was redacted to `<redacted>` after the fact
+(2026-10-23); it was a short-lived clone token from when the repository was private and had
+expired. No other field was changed.
 
 ## 4. Events endpoint
 
