@@ -13,3 +13,4 @@ harness/go-opa/harness-go-opa
 
 # Collection environment dump: contains the local hostname; published content is in results/ENVIRONMENT.md
 results/raw/ENVIRONMENT.txt
+.claude/
