@@ -8,6 +8,7 @@ A small pre-registered measurement of whether 12 JSON and JWT parsers read the s
 - **What was tested.** 12 parsers, in Go, Python, Node.js and Rust, each ran on 137 hand-built, validly signed tokens.
 - **Headline (pre-registered).** 60 of the 66 parser pairs disagreed on the value of at least one security-relevant claim for at least one input. All 22 pre-registered predictions held. A post-hoc (not pre-registered) look finds 40 of 66 pairs that disagree on who issued the token or who it is about, and 35 of 66 after removing a go-jose extraction artefact.
 - **What this means.** These libraries, called in isolation, can interpret the same bytes differently. It does not show that any product or deployment is vulnerable.
+- **Pre-registration.** [`docs/PREREGISTRATION.md`](docs/PREREGISTRATION.md), commit `3499fcb`, pushed to GitHub at 2026-10-17T08:57:22Z ([`docs/TIMING_EVIDENCE.md`](docs/TIMING_EVIDENCE.md)).
 
 ## The problem
 
@@ -135,6 +136,7 @@ This analysis was designed after the pre-registered results were seen. It carrie
 
 - **Identity claims.** 40 of 66 pairs disagree on the value of `iss` or `sub` for at least one input.
 - **After removing extraction artefacts: 35 of 66.** go-jose decodes claims into a typed struct, which cannot hold `null`. The pre-registered rule reports that as ABSENT, while other parsers report `null`. That is a property of the extraction rule, not a parsing difference. Removing it leaves 35 of 66.
+- **Policy side × verifier side (post-hoc).** 8 of the 12 policy-side × verifier-side pairs disagree on the value of `iss` or `sub` for at least one input. After removing the same go-jose artefact, 6 of 12 remain. The other 4 of 12 disagree only on `exp`/`iat` ([`results/exploratory/d_policy_x_verifier.csv`](results/exploratory/d_policy_x_verifier.csv)).
 - **What drives the full count of 60.** Most `exp`/`iat` disagreements come from number representation: exact integer, 64-bit floating point, exact decimal, or go-jose's conversion to a 64-bit integer. Removing number-representation-only differentials and the go-jose artefacts leaves the same 35 of 66 pairs, and all 35 disagree on `iss` or `sub`.
 - **What drives the 35.**
   - Case-insensitive key matching in Go `encoding/json` struct decoding.
@@ -224,6 +226,10 @@ On the committed raw data, these commands reproduce every committed output byte 
 ## Open question
 
 Do real systems actually combine two parsers that disagree, on the same token, in one authorization decision? And if they do, does the disagreement survive the gateways, validation and re-serialisation in between? This pilot does not test either question.
+
+## How this fits
+
+This pilot is one of several studying one question: when a security check passes, what has it actually established? The question started from a threshold-signing project, [threshold-signing-k8s](https://github.com/raahulkurmi/threshold-signing-k8s). Here the check that passes is the token's signature: every token in the corpus verifies, so the pilot asks whether the parsers that then read the payload agree on what it says. For these libraries, called in isolation, a valid signature did not settle which issuer, subject or expiry each one reads.
 
 ## Author and citation
 

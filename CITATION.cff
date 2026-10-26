@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "parser-differential-pilot: a pre-registered pilot measurement of JSON and JWT parser differentials"
+authors:
+  - family-names: Kurmi
+    given-names: Rahul
+repository-code: "https://github.com/raahulkurmi/parser-differential-pilot"
+url: "https://github.com/raahulkurmi/parser-differential-pilot"
+version: 604f00a
+commit: 604f00acd8689589b79f9ba1b76a86b6325aad9a
+type: software
+preferred-citation:
+  type: software
+  title: "parser-differential-pilot: a pre-registered pilot measurement of JSON and JWT parser differentials"
+  authors:
+    - family-names: Kurmi
+      given-names: Rahul
+  year: 2026
+  url: "https://github.com/raahulkurmi/parser-differential-pilot"
